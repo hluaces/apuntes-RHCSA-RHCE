@@ -1,0 +1,26 @@
+EJERCICIO EN serverX
+
+
+
+- Todo lo que sigue hacerlo conectados via ssh desde workstation a serverb.
+
+- Añadir los grupos bedrock y wbuffalo. Añadir los usuarios fred, barney, wilma y betty. Todos ellos deben pertenecer al grupo bedrock, además barney y fred también pertenecerán al grupo wbuffalo.
+
+- Como root, crear el directorio /ACL/lodge/, el grupo propietario será wbuffalo y será un directorio colaborativo con permisos 775 y además el permiso especial SGID.
+
+- Como fred crear un file con algún dato en /ACL/lodge llamado secretstuff.
+
+- Como fred, estar seguros que barney no tendrá acceso al file secretstuff y betty podrá leer y modificar ese file.
+
+- Primero como barney y después cmo betty, intentar leer y/o escribir en el file /ACL/lodge/secretstuff
+
+- Como fred crear el directorio /ACL/lodge/congrats/. Nota: éste heredará el SGID de /ACL/lodge y el grupo wbuffalo podrá escribir en él (ha sido creado por fred!).
+
+- Aplicar una ACL para que los miembros del grupo bedrock puedan escribir en /ACL/lodge/congrats y otra para que barney no pueda ver el contenido de este directorio.
+
+- Finalmente, definir una ACL para que no solo los miembros del grupo wbuffalo tengan acceso y puedan modificar los nuevos files creados en /ACL/lodge/congrats (esto está garantizado por el SGID!) si no que también los miembros del grupo bedrock (menos barney!) tengan accesso completo a los nuevos files creados en /ACL/lodge/congrats.
+
+- Comprobar: como fred crear un file en el directorio /ACL/lodge/congrats y ver la posibilidad de betty y barney de acceder a dicho file.
+
+
+ 

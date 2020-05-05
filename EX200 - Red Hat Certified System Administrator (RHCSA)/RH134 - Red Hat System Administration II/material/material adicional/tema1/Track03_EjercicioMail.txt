@@ -1,0 +1,22 @@
+
+Expresión regular utilizada para validar si una cadena es una dirección de email válida
+
+
+maia@unito.com
+
+leon-garcia@YYasta.es
+
+alonso@mail.uniba.edu
+ 
+montse.alonso@yahoo.es
+
+a.b.ccccc@gmia.com
+
+
+
+gdgdgdg.jdjdjd.jsjsd@gdgdgd.hdhdhdhdhdhd
+
+bbb.@dhdhdh.com
+gdgdgd@.dhdhdh.com
+
+

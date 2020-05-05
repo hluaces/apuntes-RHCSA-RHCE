@@ -1,0 +1,42 @@
+It should be done on your VM.
+Users: you (student, unless you need privileges), janis, grace
+
+Exercise #1
+
+1. Crea un directorio dentro de /tmp llamado tempdir_student. Accede a él.
+2. Crea un fichero dentro del directorio tempdir llamado texxto con algo escrito dentro. Dale premisos 600. Verifica que janis no puede leer el file, haz un ls -l. 
+3. Añade un acl que permita a janis leer texxto. Vuelve a ver los permisos con ls -l, qué ha cambiado?
+4. examina la ACL que has añadido con getfacl. Verifica que janis puede leer el fichero texxto.
+5. Observa que tù y janis tenéis acceso de lectura al file texxto, pero grace no lo tiene. Añade una acl que permita a grace leer y editar el fichero texxto. Verifica que efectivamente grace puede leer y modificar el fichero.
+6. Aplica otra vez chmod 600 al fichero texxto. Examina con ls -l y getfacl el fichero, qué sucede? Puede janis leer el file?
+7. Elimina el fichero texxto.
+
+
+Exercise #2
+
+1. Crea un directorio llamado tempdir_janis dentro de /tmp. Dale permisos 711.
+2. Añade las siguientes acls al directorio tempdir_janis
+- una acl para student con premisos rwx
+- una acl para janis con premisos rwx
+- una default acl para student con premisos rwx
+- una default acl para janis con premisos rwx
+Asì, student y janis tienen acceso total al directorio tempdir_janis.
+3. Crea un file llamado texxto en tempdir_janis. Examìnalo con getfacl. Puede janis acceder al file? qué permisos tiene ella? es lo que predecìas?
+Nota que la default acl para janis en tempdir_janis tiene el permiso x. Puede janis ejecutar el file? ...noooo
+4. Como janis crea un fichero  llamado texto en tempdir_janis. Verifica que tù, student, tienes acceso de lectura y escritura en el fichero nuevo.
+5. Crea un subdirectorio llamado subdir_student en tempdir_janis. Examina las acls. Quien podrà crear objetos en subdir_student?
+6. Usa setfacl para borrar la acl (no la de default, solo la "normal") para janis en tempdir_janis. Ahora crea otro directorio en tempdir_janis, lo llamamos subdir_student2. Compara las acl de subdir_student y subdir_student2. Hay diferencias?
+7. Como janis crea un fichero nuevo en tempdir_janis. Què sucede? Puede crear un fichero en subdir_student y subdir_student2?
+8. Elimina tempdir_janis.
+
+
+
+Exercise #3 - Creating a Collaborative Directory
+
+1. Crea un nuevo grupo llamado workgrp. Los usuarios user1, user2, user3 y user4 tiene que pertenecer a dicho grupo. Verifica. Añade una password a cada usuario.
+2. Crea un directorio /work, que pertenezca al grupo workgrp. Solo el grupo workgrp tendrà acceso total al directorio. Ademàs el directorio /work serà colaborativo para el grupo workgrp.
+3. Añade un acl para workgrp en /work con permisos rwx. Hace algo esta acl?.
+4. Añade un default acl para workgrp en /work con permisos rwx. Hace algo esta acl?.
+5. Logueate como cada usuario del grupo workgrp y verifica que pueden crear y borrar dentro del directorio /work y en los subdirectorios y que tienen acceso de lectrura y escritura a los ficheros.
+6. Elimina el directorio, los usuarios y el grupo.
+

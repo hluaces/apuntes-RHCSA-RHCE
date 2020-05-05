@@ -1,0 +1,54 @@
+FILE GLOBBING
+
+Antes de ejecutar cualquier comando, la shell Bash realiza una búsqueda, en la línea de comandos, de algunos caracteres especiales (metacaracteres), con la finalidad de “interpretarlos” ("expandirlos") para que el comando solicitado se ejecute correctamente.
+
+* Hace referencia a una cadena de cero o más caracteres
+
+? Hace referencia a un solo carácter.
+
+[ abc ...] Hace referencia a cualquiera de los caracteres especificados dentro de los corchetes.
+
+[A-Z] Hace referencia a cualquiera de los caracteres especificados que se encuentren dentro del rango establecido por el guión.
+
+[!a-z] Hace referencia a cualquier carácter menos a los establecidos en el rango especificado. Aquì, en vez de ! también vale ^.
+
+EJEMPLOS
+
+1. Listar todos los ficheros que terminan en .jpg
+    $ ls *.jpg        
+  Listar los ficheros que terminan en .jpg con un solo carácter antes del punto 
+  $ ls ?.jpg        
+  Eliminar los files que terminan en .jpg que empiezen por mayùscula
+  $ rm [A-Z]*.jpg   
+
+2. Listar los archivos del directorio /dev que empiezen por tty y tengan  5 caracteres o mas:
+     ls /dev/tty??
+3. Listar los archivos del directorio /dev que empiezen por tty y terminen en 1, 2, 3 o 4     ls /dev/tty*[1-4]
+4. Listar los archivos que no "sean JPEGs o GIFs" del directorio actual
+     ls !(*.jpg|*.gif)
+5. Crear 4 files llamados file1, file2, file3 y file4
+     touch file{1..4}
+6. En el directorio actual crear 4 directorios Adir, Bdir, Cdir y Ddir
+
+
+7. Eliminar todos los files del directorio actual que empiecen por file y a continuación tengan un carácter alfabético o numérico
+     rm file[[:alnum:]]
+ 
+
+PREVENIR EXPANSIÒN EN TERMINAL
+
+\ Toma literal el siguiente carácter
+" "  Previene toda expansión excepto los símbolos !, \, $, '
+' '   Previene toda expansión
+
+
+EJEMPLOS
+
+1. Crear un file que se llame $$dinero$$
+   touch \$\$dinero\$\$
+2. Eliminar un file llamado file!!!!
+   rm 'file!!!!'
+
+
+
+ 

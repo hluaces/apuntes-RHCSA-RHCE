@@ -1,0 +1,2 @@
+- Cockpit: servicio estándar de consola web para servidores con dashboard y demás.
+- Red hat insights: a través de IA detecta problemas futuros en la máquina.

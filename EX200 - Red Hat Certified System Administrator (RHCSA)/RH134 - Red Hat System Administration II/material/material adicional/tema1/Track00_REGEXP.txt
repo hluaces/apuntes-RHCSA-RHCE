@@ -1,0 +1,16 @@
+
+EXPRESIONES REGULARES
+
+Una expresiòn regular es un patròn de texto que consiste en una combinaciòn de caracteres alfanumèricos y caracteres especiales llamados metaracteres. Nos permitiràn reconocer una serie de cadenas de caracteres que obedecen a cierto patrón. 
+
+Muchos comandos de procesamiento y búsqueda de texto como ed, grep, egrep, sed, awk o vi usan expresiones regulares. Nosotros las usaremos con: grep, sed y vi (vim).
+
+
+Realmente, con las expresiones regulares cualquier caràcter que no es un metacaràcter se corresponde con si mismo (caràcter literal). Los metacaracteres que vamos a usar son: 
+
+\ | ( ) [ ] { } ^ $ * + ? .  
+
+
+
+
+   
