@@ -1,0 +1,21 @@
+PROYECTO SELINUX
+
+https://selinuxproject.org/
+
+
+RESTORECON
+http://www.thegeekstuff.com/2017/05/restorecon-examples/
+
+
+
+Think before you just blindly audit2allow -M mydomain
+Don't Allow Domains to write Base SELinux Types
+https://danwalsh.livejournal.com/69958.html
+
+
+Q: How can I help write policy? 
+https://docs.fedoraproject.org/en-US/Fedora/13/html/SELinux_FAQ/index.html#id3036916
+
+
+SETools - Policy Analysis Tools for SELinux
+https://github.com/TresysTechnology/setools3/wiki
