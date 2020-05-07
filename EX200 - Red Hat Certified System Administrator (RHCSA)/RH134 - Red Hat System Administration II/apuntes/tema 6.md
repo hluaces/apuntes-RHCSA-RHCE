@@ -56,8 +56,9 @@
 
 ### Crear una swap en disco
 
-- Crear una partición.
--
+- Crear una partición
+- Formatear como linux-swap
+- Añadir a fstab usando `swap` como punto de montaje
 
 # Preguntas
 
