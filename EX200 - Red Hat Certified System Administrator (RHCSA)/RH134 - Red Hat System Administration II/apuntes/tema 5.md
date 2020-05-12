@@ -27,6 +27,8 @@ Para cambiar modos:
 
 - `setenforce <(0|1|2)>`: lo cambia de forma no persistente.
 - Modificar `/etc/selinux/config` lo hace persistente. Requiere reboot.
+- En el kernel añadir `selinux=0|1` para activar/desactivar.
+- En el kernel añadir `enforcing=0|1` para _permisive_ o _enforcing_.
 
 ## Controlling SELinux File Contexts
 
