@@ -1,0 +1,63 @@
+Alternativas: libguestfs virt-customize ---> para modificar
+virt-builder ---> para crear imágenes
+
+
+COMPOSER
+
+In Red Hat Enterprise Linux 8 as technology preview.
+
+A blueprint= define la imagen listando paquetes, usuarios, claves ssh yotros recursos que serán parte del sistema. 
+Se pueden definir blueprints usando versiones y podrán ser editadas.
+Cuando se crea una imagen nueva desde un blueprint en Cockpit, la imagen se asocia con el blueprint.
+
+Composer crea la imagen del sistema basándose en el blueprint.
+
+Outputs de imagen en: .qcow2, Ext4 File System Image (*.img), Raw Partitioned Disk Image (*.img), Live Bootable ISO (*.iso) ,TAR Archive (*.tar), Amazon Machine Image Disk (*.ami),  Azure Disk Image (*.vhd), VMware Virtual Machine Disk (*.vmdk)
+
+Steps:
+
+========== USAR COMPOSER DESDE COCKPIT  ===============
+
+1. yum install lorax-composer composer-cli cockpit-composer
+
+2. systemctl enable --now cockpit.socket
+
+   systemctl enable --now lorax-composer.socket
+
+3. setenforce 0
+
+4. En Firefox  https://servera.lab.example.com:9090/ 
+
+5. Barra vertical, Image Builder
+
+6. Puedo usar un Blueprint ya existente para crear una imagen o crear un blueprint nuevo para crearla.
+
+========== MODIFICAR BLUEPRINT USANDO CLI ===============
+
+1. Exportar blueprint a un file (.toml)
+ 
+   composer-cli blueprints save rh-vm
+
+2. Editar con cambios que quiero:
+
+   vim rh-vm.toml
+
+
+3. Mandar los cambios al  server Composer
+
+   composer-cli blueprints push rh-vm.toml
+
+4. Verificar que los cambios están en el server Composer
+ 
+   composer-cli blueprints show rh-vm
+
+5. Crear una imagen usando Composer desde la cli
+
+   composer-cli compose start rh-vm qcow2
+
+6. Listar imágenes del server Composer y en que estado están
+
+   composer-cli compose list
+
+
+7. setenforce 1

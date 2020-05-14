@@ -1,0 +1,122 @@
+Todo persistente
+
+ANTES DE EMPEZAR NO TENÉIS LA PASSWORD DE root EN servera
+TODOS LOS EJERCICIOS EN servera , menos los que estén indicados que se hagan en serverb.
+####################################################################################
+EJERCICO 1 REPOS             
+
+lab software-repo start
+
+
+http://content.example.com/rhel8.0/x86_64/rhcsa-practice/rht
+http://content.example.com/rhel8.0/x86_64/rhcsa-practice/errata
+
+
+lab software-module start
+Switch the postgresql module of the server profile to use the 10 stream.
+
+
+
+####################################################################################
+EJERCICO 2  CREAR LVM y EXTENDERLO
+
+En serverb
+
+Create a 400 MiB LV named servera_01_lv from the servera_01_vg VG. The size of this VG is 8GB.	
+Add a persistent file system.
+
+####################################################################################
+EJERCICO 3 SELINUX
+
+lab selinux-issues start
+
+This command installs the httpd service, configures the firewall on servera to allow HTTP connections.
+With curl http://servera.lab.example.com you should get:
+	This is SERVERA
+
+
+
+####################################################################################
+EJERCICO 4 RED 
+
+lab net-review start  pág 451 RH124
+
+
+
+####################################################################################
+
+EJERCICO 5 USERS
+
+lab users-review start pág 201 RH124
+
+
+####################################################################################
+EJERCICO 6 TUNED
+
+cambiar profile
+lab tuning-profiles start
+
+
+
+####################################################################################
+EJERCICO 7 CRON AT
+
+Necesito guardar la salida del comando 'df -h' sobre el fichero /root/uso_disco cada 10 minutos entre las 9 de la mañana y las 2 de la tarde,  cada dos días del 1 al 15  entre los meses de junio y septiembre. 
+
+
+####################################################################################
+EJERCICO 8  VDO
+
+Create the VDO volume labvdo, with the device /dev/vdb. Set its logical size to 50 GB.
+Mount the volume labvdo on /labvdovol with the XFS file system.	
+
+Provocar error no poniendo opción de montaje
+
+####################################################################################
+EJERCICO 9 autofs
+
+
+lab netstorage-autofs start
+serverb is exporting as an NFS share the /shares/indirect directory, which in turn
+contains the west, central, and east subdirectories.
+serverb is also exporting as an NFS share the /shares/direct/external directory.
+
+
+The /shares/direct/external shared directory should be automounted on servera using
+a direct map on /external.
+The /shares/indirect/west shared directory should be automounted on servera using an
+indirect map on /internal/west.
+The /shares/indirect/central shared directory should be automounted on servera
+using an indirect map on /internal/central.
+The /shares/indirect/east shared directory should be automounted on servera using an
+indirect map on /internal/east.
+
+####################################################################################
+EJERCICO 10
+
+tools: grep, locate, find, scp, tar, rsync
+
+
+####################################################################################
+EJERCICO 11 PERMISOS
+lab perms-review start pág 233	RH124
+
+
+####################################################################################
+EJERCICO 12 ACLs
+lab acl-review start pág 111 RH134
+
+
+####################################################################################
+EJERCICO 13 SINCRONIZAR CON SERVER NTP
+lab log-review start
+Pretend that the serverb system has been relocated to Vietnam and you must update
+the time zone appropriately.
+
+
+
+
+####################################################################################
+EJERCICIO 14 STRATIS
+
+Crear un filesystem en una pool de 10Gb de stratis y que este montado en /labpool.
