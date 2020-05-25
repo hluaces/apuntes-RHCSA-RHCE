@@ -1,0 +1,22 @@
+---
+
+- name: 'Solución del ejercicio j2'
+  hosts: all
+  become: true
+  gather_facts: true
+  become_user: 'root'
+  become_method: 'sudo'
+  vars:
+    _file: 'hosts.j2'
+    _file_dest: "/root/hosts"
+  tasks:
+    - name: "Copiar fichero {{ _file }} en {{ _file_dest }}"
+      template:
+        src: "/root/hosts"
+        dest: "{{ _file_dest }}"
+        owner: 'root'
+        group: 'root'
+        mode: '0660'
+        force: true
+      delegate_to: 'servera.lab.example.com'
+      run_once: true

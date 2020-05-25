@@ -1,0 +1,3 @@
+{% for nombre_servidor, datos_servidor in hostvars.items()) %}
+    {{ datos_servidor['ansible_default_ipv4']['address'] }} {{ datos_servidor['ansible_fqdn'] }}
+{% endfor %}
