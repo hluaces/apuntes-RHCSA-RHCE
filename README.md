@@ -1,6 +1,6 @@
 # Curso Red Hat 2020
 
-Mis apuntes para preparar los exámenes de certificación de Red Hat EX200 y EX300.
+Mis apuntes para preparar los exámenes de certificación de Red Hat EX200 y EX294.
 
 # Apuntes sueltos de cosas interesantes descubiertas durante el curso
 
@@ -10,11 +10,9 @@ Mis apuntes para preparar los exámenes de certificación de Red Hat EX200 y EX3
 
 # Recomendaciones para el Examen
 
-- **EMPIEZA CAMBIANDO EL PASSWORD DE ROOT ZOMG**
-- ¡¡Los ejercidios de disco primero!!
-    - Si un ejercicio se hace mal al final del examen puede romper la máquina.
-    - Además, leer primero todos los ejercicios de discos para no malgastar particiones (si te piden GPT al final y has creado MBR al principio del examen...)
+- Empieza cambiando la contraseña de root.
+- Ejercicios de disco primero.
+- Después ejercicios de red.
 - Revisa cual es la HOME del usuario, no des por sentado que es `/home/<usuario>`.
-- Si no se sabe que instalar, tirar de `yum install *algo*` y dejarlo ahí.
 - El examen se corrige después de un _reboot_.
-- awwapp.com
+
