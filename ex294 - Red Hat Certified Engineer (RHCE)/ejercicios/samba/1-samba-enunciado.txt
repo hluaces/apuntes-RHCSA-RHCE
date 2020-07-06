@@ -1,0 +1,35 @@
+
+
+En este ejercicio se va a crear un único playook con un play para desplegar un servidor samba con una cierta configuracion y con otro play para testear.
+
+Los hosts sobre los que se aplicará el play para desplegar el servidor samba serán serán servera y serverc.
+El host desde el que se probará a descargar un fichero del servidor samba en servera y serverb será localhost.
+
+
+Usar las siguientes variables:
+workgroup: WORKGROUP
+share_path: /samba/public
+share_name: publico
+public: yes
+
+PLAY 1
+
+1. Instalar software
+
+2. Activar servicios
+
+3. Asegurarnos que el firewall está activo y permite acceso al servidor samba.
+
+4. Crear el recurso /samba/public a compartir (permisos + SELinux) con un fichero dentro.
+
+5. Añadir configuración: recurso llamado "public" , de público acceso. 
+
+6. Recargo servicios 
+
+
+
+PLAY 2
+
+1. Asegurarnos de que tenemos el software necesario para testear. 
+
+2. Test: pruebo a descargar el fichero del recurso samba de servera y serverc.

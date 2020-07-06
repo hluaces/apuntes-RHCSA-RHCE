@@ -84,6 +84,10 @@ Otros módulos interesantes para este tipo de administración:
 
 ## Managing the Boot Process and Scheduled Processes
 
+El módulo `at` permite programar tareas que se ejecuten una única vez. El módulo `cron` permite crear tareas program
+
+
+
 ## Managing Storage
 
 ## Managing Network Configuration
@@ -102,6 +106,12 @@ Otros módulos interesantes para este tipo de administración:
 - https://docs.ansible.com/ansible/latest/modules/known_hosts_module.html#known-hosts-module
 - https://docs.ansible.com/ansible/latest/modules/authorized_key_module.html#authorized-key-module
 - https://docs.ansible.com/ansible/latest/plugins/lookup.html?highlight=lookup
+- https://docs.ansible.com/ansible/latest/modules/at_module.html
+- https://docs.ansible.com/ansible/latest/modules/cron_module.html
+- https://docs.ansible.com/ansible/latest/modules/reboot_module.html
+- https://docs.ansible.com/ansible/latest/modules/service_module.html
+
+
 
 # Mans
 

@@ -1,0 +1,6 @@
+[samba_servers]
+servera.lab.example.com
+serverc.lab.example.com
+
+[samba_clients]
+serverb.lab.example.com

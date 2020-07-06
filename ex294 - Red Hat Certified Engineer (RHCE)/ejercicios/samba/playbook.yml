@@ -1,0 +1,130 @@
+---
+
+- name: 'Configurar servidor Samba'
+  hosts: samba_servers
+  handlers:
+    - name: 'reiniciar samba'
+      service:
+        name: 'smb'
+        state: 'restarted'
+  vars:
+    workgroup: 'WORKGROUP'
+    share_path: '/samba/public'
+    share_name: 'publico'
+    public: true
+    test_file: 'test_file'
+  tasks:
+    - name: 'Instalar paquetería'
+      yum:
+        name: ['samba', 'firewalld', 'samba-client']
+        state: 'present'
+
+    - name: 'Activar servicios'
+      service:
+        name: "{{ item }}"
+        state: 'started'
+        enabled: true
+      loop: ['smb', 'firewalld']
+
+    - name: 'Permitir tráfico samba en el firewall'
+      firewalld:
+        service: "{{ item }}"
+        state: 'enabled'
+        permanent: true
+        immediate: true
+      loop: ['samba', 'samba-client']
+
+    - name: 'Create a directory for the samba share'
+      file:
+        path: "{{ share_path }}"
+        state: 'directory'
+        recurse: true
+        mode: '0777'
+        setype: 'samba_share_t'
+
+    - name: 'Aplicar contextos de SELinux'
+      sefcontext:
+        setype: 'samba_share_t'
+        target: '/samba(/.*)?'
+        state: 'present'
+
+    - name: 'Create share on the smb.conf file'
+      blockinfile:
+        path: '/etc/samba/smb.conf'
+        backup: true
+        block: |
+            [{{ share_name }}]
+              path = {{ share_path }}
+              guest ok = yes
+              writeable = yes
+              browseable = yes
+              create mask = 0777
+              directory mask = 0777
+        validate: testparm -s %s
+      notify: 'reiniciar samba'
+
+    - name: 'Modify the WORKGROUP on the smb.conf file'
+      ini_file:
+        path: '/etc/samba/smb.conf'
+        section: 'global'
+        option: 'workgroup'
+        value: "{{ workgroup }}"
+      notify: 'reiniciar samba'
+
+    - name: 'Create testing file'
+      copy:
+        content: 'Hello, World'
+        dest: "{{ share_path }}/{{ test_file }}"
+
+- name: 'Configurar clientes samba'
+  hosts: samba_clients
+  gather_facts: true
+  vars:
+    mount_path: '/samba-mounted'
+    test_file: 'test_file'
+    share_name: 'publico'
+  tasks:
+    - name: 'Install samba tools'
+      yum:
+        name: ['samba-client', 'cifs-utils']
+        state: present
+
+    - name: 'Create local mount points'
+      file:
+        path: "{{ mount_path }}/{{ item }}"
+        state: 'directory'
+      loop: "{{ hostvars[ansible_inventory][groups]['samba_servers'] }}"
+
+    - name: 'Mount remote directories'
+      mount:
+        path: "{{ mount_path }}/{{ item }}"
+        src: "//{{ item }}/{{ share_name }}"
+        state: 'mounted'
+        fstype: 'cifs'
+        opts: 'guest'
+      loop: "{{ hostvars[ansible_inventory][groups]['samba_servers'] }}"
+
+    - name: 'Ensure we have reading permissions on the mount points'
+      command: "cat {{ mount_path }}/{{ item }}/{{ test_file }}"
+      changed_when: false
+      loop: "{{ hostvars[ansible_inventory][groups]['samba_servers'] }}"
+
+    - name: 'Ensure we have writing permissions on the mount points'
+      file:
+        path: "{{ mount_path }}/{{ item }}/{{ test_file }}_write"
+        state: 'touch'
+      loop: "{{ hostvars[ansible_inventory][groups]['samba_servers'] }}"
+
+    - name: 'Ensure we have permissions to delete on the mount points'
+      file:
+        path: "{{ mount_path }}/{{ item }}/{{ test_file }}_write"
+        state: 'absent'
+      loop: "{{ hostvars[ansible_inventory][groups]['samba_servers'] }}"
+
+    - name: 'Unmount remote directories'
+      mount:
+        path: "{{ mount_path }}/{{ item }}"
+        src: "//{{ item }}/{{ share_name }}"
+        state: 'absent'
+        fstype: 'cifs'
+      loop: "{{ hostvars[ansible_inventory][groups]['samba_servers'] }}"

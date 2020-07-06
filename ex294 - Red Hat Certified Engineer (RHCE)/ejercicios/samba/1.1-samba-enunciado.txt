@@ -1,0 +1,4 @@
+
+
+Con el primer play realizado en el ejercicio 1-samba-enunciado.txt crear un rol que se llame sambag. Además crear un play que lo use para crear servidor samba en serverd 
+y para testear en localhost descargando el fichero. 
